@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<algorithm xmlns="http://www.w3schools.com"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.w3schools.com algorithm_schema.xsd">
+
+    <iterations>2000000000</iterations>
+
+    <construction>
+        <insertion name="bestInsertion">
+            <allowVehicleSwitch>true</allowVehicleSwitch>
+        </insertion>
+    </construction>
+
+    <strategy>
+        <memory>50</memory>
+        <searchStrategies>
+            <searchStrategy name="randomRR">
+                <selector name="selectRandomly"/>
+                <acceptor name="schrimpfAcceptance">
+                    <alpha>0.1</alpha>
+                    <initialThreshold>150</initialThreshold>
+                </acceptor>
+                <modules>
+                    <module name="ruin_and_recreate">
+                        <ruin name="randomRuin">
+                            <share>0.5</share>
+                        </ruin>
+                        <insertion name="bestInsertion"/>
+                    </module>
+
+                </modules>
+                <probability>0.6</probability>
+            </searchStrategy>
+
+            <searchStrategy name="radialRR">
+                <selector name="selectRandomly"/>
+                <acceptor name="schrimpfAcceptance"/>
+                <modules>
+                    <module name="ruin_and_recreate">
+                        <ruin name="radialRuin">
+                            <share>0.3</share>
+                        </ruin>
+                        <insertion name="bestInsertion"/>
+                    </module>
+
+                </modules>
+                <probability>0.2</probability>
+            </searchStrategy>
+			
+			<searchStrategy name="randomRR1">
+                <selector name="selectRandomly"/>
+                <acceptor name="greedyAcceptance"/>
+                <modules>
+                    <module name="ruin_and_recreate">
+                        <ruin name="randomRuin">
+                            <share>0.5</share>
+                        </ruin>
+                        <insertion name="regretInsertion"/>
+                    </module>
+                </modules>
+                <probability>0.1</probability>
+            </searchStrategy>
+
+            <searchStrategy name="radialRR1">
+                <selector name="selectRandomly"/>
+                <acceptor name="greedyAcceptance"/>
+                <modules>
+                    <module name="ruin_and_recreate">
+                        <ruin name="radialRuin">
+                            <share>0.3</share>
+                        </ruin>
+                        <insertion name="regretInsertion"/>
+                    </module>
+                </modules>
+                <probability>0.1</probability>
+            </searchStrategy>
+			
+        </searchStrategies>
+    </strategy>
+
+</algorithm>
